@@ -13,20 +13,26 @@ let cardApi = Axios.create({
 export default new Vuex.Store({
   state: {
   activeGame: {},
- 
+  opponentCard:{},
   games: [],
-  game: {}
+  game: {},
+  playerCard:{},
+  attackObject: {}
   },
   mutations: {
 startGame(state,data) {
   state.activeGame = data
 },
-setCards(state,data) {
-state.games = data
+setPlayerCard(state,data) {
+state.playerCard = data
 },
-setGame(state, data) {
-  state.game = data
-//  router.push({name: 'activeGame', params:{gameId: data.id}})
+setAttack(state, data) {
+  state.attackObject = data
+//  router.push({name: 'activeGame', params:{gameId: data.id}})  
+
+},
+setOpponentCard(state,data) {
+  state.opponentCard = data
 }
   },
   actions: {
@@ -49,6 +55,12 @@ setGame(state, data) {
    cardApi.get('')
    .then(res => {
      commit('setCards', res.data)
+   })
+ },
+ attack({ commit,dispatch }, attackObject) {
+   cardApi.put('/' + attackObject.gameId, attackObject)
+   .then(game => {
+     dispatch('getGame', attackObject.gameId)
    })
  }
  }

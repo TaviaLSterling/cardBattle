@@ -1,8 +1,13 @@
 <template>
+
   <div class="player container">
+    <h4>{{player.name}}</h4>
       <div class="player" v-for="card in player.hand" :key="card.id">
-        {{player.name}}
-         <p>{{card.name}}<br>{{card.attack}}<br>{{card.health}}<br>{{card.defense}}</p>
+        
+         <h4>{{card.name}}</h4>
+           <br><h4>Attack:{{card.attack}}</h4>
+           <h4>Health:{{card.health}}</h4>
+          <h4>Defense: {{card.defense}}</h4>
         <img :src="card.img">
       </div>
   </div>
@@ -28,3 +33,8 @@ export default {
   }
   }
 </script>
+<style>
+.container{
+  display:flex;
+}
+</style>

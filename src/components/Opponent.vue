@@ -4,10 +4,16 @@
    <div v-for="card in opponent.hand" :key="card.id">
        <div v-if="card.visible">
         <img :src="card.img">
-        <p>{{card.name}}<br>{{card.attack}}{{card.health}}{{card.defense}}</p>
+        <h4>{{card.name}}</h4><br>
+        <h4>Attack:
+        {{card.attack}}</h4>
+        <h4>Health:
+        {{card.health}}</h4>
+        <h4>Defense:
+        {{card.defense}}</h4>
        </div>
        <div v-if="!card.visible">
-           <img src="../assets/cardBack.png">
+           <img class="resize" src="../assets/cardBack.png">
            </div>
         </div>
         </div>
@@ -24,3 +30,9 @@ export default {
 }
 
 </script>
+<style>
+.resize {
+    height:230px;
+    width:100px;
+}
+</style>
