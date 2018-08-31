@@ -1,10 +1,10 @@
 <template>
 <div class="opponent container">
-    <h1> {{opponent.name}}</h1>
-   <div v-for="card in opponent.hand" :key="card.id">
+    <h3> {{opponent.name}}</h3>
+   <div v-for="card in opponent.hand" @click="(opponent.id,card.id)" :key="card.id">
        <div v-if="card.visible">
-        <img :src="card.img">
-        <h4>{{card.name}}</h4><br>
+        <img class="resize" :src="card.img">
+        <h4>{{card.name}}</h4>
         <h4>Attack:
         {{card.attack}}</h4>
         <h4>Health:
@@ -21,6 +21,13 @@
 <script>
 export default {
        name: "opponent",
+        props: {
+            //fnclick must be defined to work
+      fnclick: {
+        type: Function,
+        required: true
+        }
+      },
 
     computed: {
         opponent() {
@@ -31,8 +38,14 @@ export default {
 
 </script>
 <style>
+.container {
+    display:flex;
+    justify-content:space-around
+}
 .resize {
+    
+    justify-content:space-around;
     height:230px;
-    width:100px;
+    width:120px;
 }
 </style>

@@ -12,56 +12,59 @@ let cardApi = Axios.create({
 
 export default new Vuex.Store({
   state: {
-  activeGame: {},
-  opponentCard:{},
-  games: [],
-  game: {},
-  playerCard:{},
-  attackObject: {}
+    activeGame: {},
+    opponentCard: {},
+    games: [],
+    game: {},
+    playerCard: {},
+    attackObject: {}
   },
   mutations: {
-startGame(state,data) {
-  state.activeGame = data
-},
-setPlayerCard(state,data) {
-state.playerCard = data
-},
-setAttack(state, data) {
-  state.attackObject = data
-//  router.push({name: 'activeGame', params:{gameId: data.id}})  
+    startGame(state, data) {
+      state.activeGame = data
+    },
+    setPlayerCard(state, data) {
+      state.playerCard = data
+    },
+    setAttack(state, data) {
+      state.attackObject = data
+      //  router.push({name: 'activeGame', params:{gameId: data.id}})  
 
-},
-setOpponentCard(state,data) {
-  state.opponentCard = data
-}
+    },
+    setOpponentCard(state, data) {
+      state.opponentCard = data
+    }
+ //  setActiveGame(state,data){
+ //     state.activeGame = data
+ //  }
   },
   actions: {
-    newGame({commit, dispatch},data) {
-      cardApi.post('',data)
-      .then(res => {
-        console.log(res.data)
-        commit('startGame', res.data)
-        router.push({name: 'game'})
-        
+    newGame({ commit, dispatch }, data) {
+      cardApi.post('', data)
+        .then(res => {
+
+          commit('startGame', res.data)
+          router.push({ name: 'game' })
+
+        })
+    },
+    getGame({ commit, dispatch }, gameId) {
+      cardApi.get('/' + gameId).then(res => {
+        commit('startGame', res.data.id)
+        router.push({ name: 'game' })
       })
     },
-    getGame({commit,dispatch}, gameId){
-      cardApi.get('/' + gameId).then(res => {
-        commit('setGame', res.data.id)
-     router.push({name:'game'})
-    })
- },
- setGames({commit,dispatch}) {
-   cardApi.get('')
-   .then(res => {
-     commit('setCards', res.data)
-   })
- },
- attack({ commit,dispatch }, attackObject) {
-   cardApi.put('/' + attackObject.gameId, attackObject)
-   .then(game => {
-     dispatch('getGame', attackObject.gameId)
-   })
- }
- }
+    setGame({ commit, dispatch }) {
+      cardApi.get('')
+        .then(res => {
+          commit('setCards', res.data)
+        })
+    },
+    attack({ commit, dispatch }, attackObject) {
+      cardApi.put('/' + attackObject.gameId, attackObject)
+        .then(res => {
+          dispatch('getGame', attackObject.gameId)
+        })
+    }
+  }
 })

@@ -1,7 +1,9 @@
 <template>
   <div class="game">
-    <player></player>
-    <opponent></opponent>
+    <button @click="attack">Attack!</button>
+    <player :fnclick="setPlayerCard"></player>
+    <opponent :fnclick="setOpponentCard"></opponent>
+    
       </div>
 </template>
 
@@ -13,7 +15,7 @@ export default {
   name: "game", 
   data() {   
     return {
-attackObject = {
+attackObject : {
   playerId: "",
 	playerCardId: "",
 	opponentId: "",
@@ -25,7 +27,7 @@ attackObject = {
  
   computed:{
    activeGame() {
-     return this.$store.state.activeGame
+     return this.$store.state.activeGame;
    }
  },
  methods: {
@@ -50,7 +52,7 @@ attackObject = {
  }
   
 
-methods:{
+
 
  // startGame() {
     // let gameConfig = {
@@ -60,17 +62,14 @@ methods:{
     //   this.$store.dispatch('startGame',gameConfig);
     // }
     // },
-setPlayerCard() {
 
-}
- setOpponentCard() {
-
- }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-
+.game {
+  background-color:black;
+  color:white;
+}
 </style>

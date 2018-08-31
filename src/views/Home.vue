@@ -1,19 +1,20 @@
 <template>
   <div class="home container">
       <form v-on:submit.prevent="startGame">
-      <p>Enter your name:</p>
+      <h4>Enter your name:</h4>
       <input type="text" v-model="game.gameConfig.playerName" placeholder="name">
       </form>
     <form @submit.prevent="opponent">
-      <p>Number of Opponents:</p>
+      <h4>Number of Opponents:</h4>
       <input type="number" placeholder="1">
       </form>
          <form @submit.prevent="set">
-      <p>Choose a Deck:</p>
+      <h4>Choose a Deck:</h4>
       <input type="number" placeholder="1">
+      <button @click="startGame">Start</button>
       </form>
     
-     <button @click="startGame">Start</button>
+     
         <!-- {{game.player}}
         {{game.opponent}} -->
         </div>
@@ -58,4 +59,14 @@ export default {
 };
 </script>
 <style>
+.container {
+  
+  background-color:black;
+  color:white;
+  padding-top:70px;
+  padding-bottom: 100px;
+}
+button{
+  margin-left:20px;
+}
 </style>
