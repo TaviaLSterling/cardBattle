@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+//@ts-ignore
 import Home from './views/Home.vue'
-import ActiveGame from './views/ActiveGame.vue'
+//@ts-ignore
+import Game from './views/Game.vue'
 
 
 Vue.use(Router)
@@ -14,9 +16,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/activeGame',
-      name:'activeGame',
-      component: ActiveGame
+      path:'/game',
+      name: 'game',
+      component: Game
     }
 
     

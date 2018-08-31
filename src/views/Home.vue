@@ -1,46 +1,61 @@
 <template>
   <div class="home container">
-      <form @submit.prevent="name">
+      <form v-on:submit.prevent="startGame">
       <p>Enter your name:</p>
-      <input type="text" placeholder="name">
+      <input type="text" v-model="game.gameConfig.playerName" placeholder="name">
       </form>
-    <form @submit.prevent="opponents">
+    <form @submit.prevent="opponent">
       <p>Number of Opponents:</p>
       <input type="number" placeholder="1">
       </form>
-      <p>Select Deck:</p>
-      <button>Deck 1</button>
-      <button>Deck 2</button>
-      <button>Deck 3</button>
-</div>
+         <form @submit.prevent="set">
+      <p>Choose a Deck:</p>
+      <input type="number" placeholder="1">
+      </form>
+    
+     <button @click="startGame">Start</button>
+        <!-- {{game.player}}
+        {{game.opponent}} -->
+        </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Game from '@/components/Game.vue'
-import MyCards from '@/components/MyCards.vue'
-import Opponents from '@/components/Opponents.vue'
-
-
+// import Player from "@/components/Player.vue";
+// import Opponent from "@/components/Opponent.vue";
+import router from '../router.js'
 export default {
-  name: 'home',
+  name: "home",
   data() {
     return {
-activeGame: {}
+      game: {
+        gameConfig: {
+          playerName: "",
+          opponent: 1,
+          set: 4
+        }
+      },
+  //    computed: {
+  //     gameAll() {
+  //      return this.$store.state.games;
+  //      }
+  //    }
     };
   },
   methods: {
-startGame() {
-  this.$store.dispatch('getGame',{gameId: this.activeGame})
-},
-setActiveGame(game) {
-this.activeGame = game;
+    startGame() {
+      this.$store.dispatch("newGame", this.game);
+    },
+    startNewGame() {
+    router.push({name:'game'})
+    }
 }
-  },
-  components: {
-    Game,
-    MyCards,
-    Opponents
-  }
-}
+   
+  // }, components: {
+  //     Player,
+  //     Opponent
+  //   }
+};
 </script>
+<style>
+</style>
