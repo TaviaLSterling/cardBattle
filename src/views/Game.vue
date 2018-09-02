@@ -1,7 +1,8 @@
 <template>
-  <div class="game">
-    <button @click="attack">Attack!</button>
+  <div class="game container-fluid">
+   
     <player :fnclick="setPlayerCard"></player>
+    <button class="btn btn-success" @click="attack">Attack!</button>
     <opponent :fnclick="setOpponentCard"></opponent>
     
       </div>
@@ -69,7 +70,9 @@ attackObject : {
 <style scoped>
 
 .game {
-  background-color:black;
+  background-image:url('../assets/galaxy.jpg');
+  background-size: cover;
   color:white;
+  font-family: 'Permanent Marker', cursive;
 }
 </style>

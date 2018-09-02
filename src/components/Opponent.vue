@@ -1,10 +1,10 @@
 <template>
 <div class="opponent container">
-    <h3> {{opponent.name}}</h3>
-   <div v-for="card in opponent.hand" @click="(opponent.id,card.id)" :key="card.id">
-       <div v-if="card.visible">
+    <h3 class="nameColor"> {{opponent.name}}</h3>
+   <div v-for="card in opponent.hand" @click="fnclick(opponent.id,card.id)" :key="card.id">
+       <div v-if="card.visible"> 
+           <h3 class="nameColor">{{card.name}}</h3>
         <img class="resize" :src="card.img">
-        <h4>{{card.name}}</h4>
         <h4>Attack:
         {{card.attack}}</h4>
         <h4>Health:
@@ -45,7 +45,11 @@ export default {
 .resize {
     
     justify-content:space-around;
+    padding:5px;
     height:230px;
-    width:120px;
+    width:170px;
+}
+.nameColor {
+    color:rgb(126, 9, 9);
 }
 </style>

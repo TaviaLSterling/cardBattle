@@ -11,12 +11,8 @@
          <form @submit.prevent="set">
       <h4>Choose a Deck:</h4>
       <input type="number" placeholder="1">
-      <button @click="startGame">Start</button>
+      <button class="btn btn-danger" @click="startGame">Start</button>
       </form>
-    
-     
-        <!-- {{game.player}}
-        {{game.opponent}} -->
         </div>
 </template>
 
@@ -60,13 +56,18 @@ export default {
 </script>
 <style>
 .container {
-  
-  background-color:black;
+   font-family: 'Permanent Marker', cursive;
+ background-color:black;
   color:white;
   padding-top:70px;
   padding-bottom: 100px;
 }
 button{
   margin-left:20px;
+}
+body {
+ background-image: url('../assets/galaxy.jpg');
+  background-size: cover;
+  background-repeat:no-repeat;
 }
 </style>

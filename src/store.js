@@ -42,15 +42,15 @@ export default new Vuex.Store({
     newGame({ commit, dispatch }, data) {
       cardApi.post('', data)
         .then(res => {
-
           commit('startGame', res.data)
           router.push({ name: 'game' })
 
         })
     },
     getGame({ commit, dispatch }, gameId) {
-      cardApi.get('/' + gameId).then(res => {
-        commit('startGame', res.data.id)
+      cardApi.get('/' + gameId)
+      .then(res => {
+        commit('startGame', res.data.data)
         router.push({ name: 'game' })
       })
     },
