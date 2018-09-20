@@ -6,7 +6,7 @@
       <opponent :fnclick="setOpponentCard"></opponent>
     </div>
     <div v-else>
-      {{activeGame.winner}} WINS!
+      <h3>{{activeGame.winner.name}} WINS!</h3>
     </div>
   </div>
 </template>
